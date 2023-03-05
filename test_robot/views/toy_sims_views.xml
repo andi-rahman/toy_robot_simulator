@@ -1,0 +1,75 @@
+<?xml version="1.0"?>
+<odoo>
+    <data>
+        <record id="view_toy_robot_tree" model="ir.ui.view">
+            <field name="name">toy.robot.sims.tree</field>
+            <field name="model">toy.robot.sims</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="point_x"/>
+                    <field name="point_y"/>
+                    <field name="facing"/>
+                    <field name="report"/>
+                </tree>
+            </field>
+        </record> 
+
+        <record id="view_toy_robot_form" model="ir.ui.view">
+            <field name="name">toy.robot.sims.form</field>
+            <field name="model">toy.robot.sims</field>
+            <field name="arch" type="xml">
+                <form string="No Seri Faktur">
+                    <header></header>
+                    <sheet>
+                        <div class="oe_button_box" name="button_box">
+                            <button name="set_move" type="object" class="oe_stat_button" icon="fa-arrow-up" >
+                                <div class="o_stat_info" icon="fa-caret-square-up">
+                                    <span icon="fa-caret-square-up"> Moves</span>
+                                </div>
+                            </button>
+                            <button name="set_right_left" type="object" class="oe_stat_button" icon="fa-arrow-right" >
+                                <div class="o_stat_info">
+                                    <span>Right</span>
+                                </div>
+                            </button>
+                            <button name="set_right_left" type="object" class="oe_stat_button" icon="fa-arrow-left" >
+                                <div class="o_stat_info">
+                                    <span>Left</span>
+                                </div>
+                            </button>
+                        </div>
+                        <group>
+                            <group>
+                                <field name="point_x"/>
+                                <field name="point_y"/>
+                                <field name="facing" required="1"/>
+                                <button
+                                    name="set_place"
+                                    type="object"
+                                    string="Set Place"
+                                    class="oe_highlight"
+                                />
+                            </group>
+                            <group>
+                                <field name="report"/>
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record> 
+
+        <record model="ir.actions.act_window" id="toy_robot_action">
+			<field name="name">Game</field>
+			<field name="res_model">toy.robot.sims</field>
+			<field name="view_mode">tree,form</field>
+		</record>
+
+        <menuitem id="toy_robot_menuitem" name="Games" web_icon="test_robot,static/description/icon.png"/>
+        <menuitem id="menu_toy_simulator" 
+            name="Game" 
+            action="toy_robot_action"
+            parent="toy_robot_menuitem" 
+            sequence="1" />
+    </data>
+</odoo>
